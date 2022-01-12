@@ -22,6 +22,11 @@ const TimerSchema = new Schema({
     twoBreaks: {
         type: Boolean,
         required: true
+    },
+    //We will match user id to mongoDB user on front end on sign in 
+    userId: {
+        type: String,
+        required: true
     }
 })
 
