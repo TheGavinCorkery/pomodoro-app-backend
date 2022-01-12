@@ -29,6 +29,19 @@ app.get('/timers', (req, res) => {
 })
 
 /* 
+ * GET /timers
+ * Purpose: Get all timers
+*/
+app.get('/timers/:id', (req, res) => {
+    // Return array of all the timers in the DB
+    let id = req.params.id
+
+    Timer.find({userId: id}).then((timers) => {
+        res.send(timers)
+    })
+})
+
+/* 
  * POST /timers
  * Purpose: Post a new timer
 */
@@ -40,13 +53,15 @@ app.post('/timers', (req, res) => {
     let shortBreakTime = req.body.shortBreakTime;
     let longBreakTime = req.body.longBreakTime;
     let twoBreaks = req.body.twoBreaks;
+    let userId = req.body.id;
 
     let newTimer = new Timer({
         title,
         workTime,
         shortBreakTime,
         longBreakTime,
-        twoBreaks
+        twoBreaks,
+        userId
     })
 
     newTimer.save().then((timerDoc) => {
