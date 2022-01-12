@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const { stringify } = require('nodemon/lib/utils');
+const Schema = mongoose.Schema;
 
-const TimerSchema = new mongoose.Schema({
+const TimerSchema = new Schema({
     title: {
         type: String,
         required: true,
